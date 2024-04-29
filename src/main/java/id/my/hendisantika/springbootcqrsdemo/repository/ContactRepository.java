@@ -35,4 +35,10 @@ public class ContactRepository {
     public List<Contact> findAll() {
         return entityManager.createQuery("from Contact c", Contact.class).getResultList();
     }
+
+    public long create(Contact contact) {
+        entityManager.persist(contact);
+        entityManager.flush();
+        return contact.getId();
+    }
 }
