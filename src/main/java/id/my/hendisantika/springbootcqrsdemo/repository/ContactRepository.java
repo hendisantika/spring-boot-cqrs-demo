@@ -51,4 +51,9 @@ public class ContactRepository {
         query.setParameter("phone", contact.getPhone());
         query.executeUpdate();
     }
+
+    public void delete(long id) {
+        final Contact contact = entityManager.find(Contact.class, id);
+        entityManager.remove(contact);
+    }
 }
