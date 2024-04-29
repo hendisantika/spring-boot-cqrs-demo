@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,5 +49,11 @@ public class ContactCommandController {
     public void update(@RequestBody ContactCommandDto contactDto) {
         Contact contact = new Contact(contactDto.getId(), contactDto.getName(), contactDto.getEmail(), contactDto.getPhone());
         contactCommandService.update(contact);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable long id) {
+        contactCommandService.delete(id);
     }
 }
