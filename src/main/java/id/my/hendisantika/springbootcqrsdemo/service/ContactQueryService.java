@@ -1,10 +1,13 @@
 package id.my.hendisantika.springbootcqrsdemo.service;
 
+import id.my.hendisantika.springbootcqrsdemo.model.Contact;
 import id.my.hendisantika.springbootcqrsdemo.repository.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,4 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ContactQueryService {
     private final ContactRepository contactRepository;
+
+    public Optional<Contact> findById(long id) {
+        return contactRepository.findById(id);
+    }
 }
