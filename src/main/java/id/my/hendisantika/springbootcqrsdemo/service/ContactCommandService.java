@@ -27,4 +27,8 @@ public class ContactCommandService {
     public Long create(Contact contact) {
         return contactRepository.create(contact);
     }
+
+    public void update(Contact contact) {
+        contactRepository.update(contact);
+    }
 }
