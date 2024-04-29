@@ -31,4 +31,8 @@ public class ContactCommandService {
     public void update(Contact contact) {
         contactRepository.update(contact);
     }
+
+    public void delete(long id) {
+        contactRepository.delete(id);
+    }
 }
