@@ -1,6 +1,10 @@
 package id.my.hendisantika.springbootcqrsdemo.controller;
 
+import jakarta.persistence.NoResultException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
@@ -15,4 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+    @ExceptionHandler(value = NoResultException.class)
+    public ResponseEntity handleContactNotFound() {
+        return new ResponseEntity<>("Contact not found!", HttpStatus.NOT_FOUND);
+    }
 }
