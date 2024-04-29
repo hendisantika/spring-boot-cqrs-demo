@@ -5,10 +5,13 @@ import id.my.hendisantika.springbootcqrsdemo.model.Contact;
 import id.my.hendisantika.springbootcqrsdemo.service.ContactCommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -37,5 +40,12 @@ public class ContactCommandController {
         long savedContactId = contactCommandService.create(contact);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedContactId).toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void update(@RequestBody ContactCommandDto contactDto) {
+        Contact contact = new Contact(contactDto.getId(), contactDto.getName(), contactDto.getEmail(), contactDto.getPhone());
+        contactCommandService.update(contact);
     }
 }
