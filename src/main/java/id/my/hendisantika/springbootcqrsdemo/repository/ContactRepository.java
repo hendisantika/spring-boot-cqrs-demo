@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,5 +30,9 @@ public class ContactRepository {
                 .getResultList()
                 .stream()
                 .findFirst();
+    }
+
+    public List<Contact> findAll() {
+        return entityManager.createQuery("from Contact c", Contact.class).getResultList();
     }
 }
