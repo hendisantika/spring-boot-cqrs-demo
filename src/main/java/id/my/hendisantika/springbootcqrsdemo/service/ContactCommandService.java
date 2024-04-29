@@ -1,5 +1,6 @@
 package id.my.hendisantika.springbootcqrsdemo.service;
 
+import id.my.hendisantika.springbootcqrsdemo.model.Contact;
 import id.my.hendisantika.springbootcqrsdemo.repository.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,4 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ContactCommandService {
     private final ContactRepository contactRepository;
+
+    public Long create(Contact contact) {
+        return contactRepository.create(contact);
+    }
 }
