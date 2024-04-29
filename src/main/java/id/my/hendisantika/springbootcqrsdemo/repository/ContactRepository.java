@@ -1,8 +1,11 @@
 package id.my.hendisantika.springbootcqrsdemo.repository;
 
+import id.my.hendisantika.springbootcqrsdemo.model.Contact;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +21,13 @@ import org.springframework.stereotype.Repository;
 public class ContactRepository {
     @PersistenceContext
     private EntityManager entityManager;
+
+    public Optional<Contact> findById(long id) {
+        return entityManager.createQuery("select c from Contact c where c.id = :id", Contact.class)
+                .setParameter("id", id)
+                .setMaxResults(1)
+                .getResultList()
+                .stream()
+                .findFirst();
+    }
 }
