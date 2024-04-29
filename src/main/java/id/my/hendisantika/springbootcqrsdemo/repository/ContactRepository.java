@@ -3,6 +3,7 @@ package id.my.hendisantika.springbootcqrsdemo.repository;
 import id.my.hendisantika.springbootcqrsdemo.model.Contact;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,5 +41,14 @@ public class ContactRepository {
         entityManager.persist(contact);
         entityManager.flush();
         return contact.getId();
+    }
+
+    public void update(Contact contact) {
+        Query query = entityManager.createQuery("update Contact c set c.name = :name, c.email = :email, c.phone = :phone where c.id = :id");
+        query.setParameter("id", contact.getId());
+        query.setParameter("name", contact.getName());
+        query.setParameter("email", contact.getEmail());
+        query.setParameter("phone", contact.getPhone());
+        query.executeUpdate();
     }
 }
