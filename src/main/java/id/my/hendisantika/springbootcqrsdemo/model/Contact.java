@@ -41,6 +41,12 @@ public class Contact {
         this.phone = phone;
     }
 
+    public Contact(String name, String email, String phone) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contactSeq")
     public long getId() {

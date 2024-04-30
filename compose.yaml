@@ -4,7 +4,8 @@ services:
     ports:
       - 5433:5432
     volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
+      #      - ~/apps/postgres:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=S3cret
       - POSTGRES_USER=naruto
